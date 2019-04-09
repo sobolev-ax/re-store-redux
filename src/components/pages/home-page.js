@@ -1,7 +1,10 @@
-export default class BookstoreService {
+import React from 'react';
+import BookList from '../book-list';
 
-  getBooks() {
-    return [
+const HomePage = () => {
+  return (
+    <div>
+      <BookList books={[
       {
         title: "JavaScript Programming.A Step-by-Step Guide for Absolute Beginners",
         author: "Brian Jenkins",
@@ -12,7 +15,8 @@ export default class BookstoreService {
         author: "Peleg Rosenthal",
         id: 2,
       },
-    ];
-  };
-
+    ]} />
+    </div>
+  );
 };
+export default HomePage;
