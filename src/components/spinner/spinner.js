@@ -1,9 +1,7 @@
 import React from 'react';
-import BookstoreServiceContext from '../bookstore-service-context';
 import './spinner.css';
 
-const Spinner = ({ getData }) => {
-  console.log(getData());
+const Spinner = () => {
   return (
     <div className="Spinner">
       <div></div>
@@ -13,4 +11,4 @@ const Spinner = ({ getData }) => {
     </div>
   );
 };
-export default BookstoreServiceContext(Spinner);
+export default Spinner;
