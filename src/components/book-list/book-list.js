@@ -4,11 +4,11 @@ import BookListItem from '../book-list-item';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import { withBookService } from '../hoc';
-import { fetchBooks } from '../../actions';
+import { fetchBooks, onAddedToCart } from '../../actions';
 import { compose } from '../../utils';
 import './book-list.css';
 
-const BookList = ({ books }) => {
+const BookList = ({ books, onAddedToCart }) => {
   return (
     <ul className="book-list">
       {
@@ -16,7 +16,7 @@ const BookList = ({ books }) => {
           const { id } = book;
           return (
             <li key={id}>
-              <BookListItem book={book} />
+              <BookListItem book={book} onAddedToCart={() => { onAddedToCart(id) }}/>
             </li>
           );
         })
@@ -31,7 +31,7 @@ class BookListContainer extends Component {
   }
 
   render() {
-    const { books, loading, error } = this.props;
+    const { books, loading, error, onAddedToCart } = this.props;
 
     if (loading === true) {
       return <Spinner />
@@ -42,7 +42,7 @@ class BookListContainer extends Component {
     }
 
     return (
-      <BookList books={books} />
+      <BookList books={books} onAddedToCart={onAddedToCart} />
     );
   };
 };
@@ -52,6 +52,7 @@ const mapStateToProps = ({ books, loading, error }) => ({ books, loading, error 
 const mapDispatcheToProps = (dispatch, { bookstoreService }) => {
   return {
     fetchBooks: fetchBooks(bookstoreService, dispatch),
+    onAddedToCart: (id) => dispatch(onAddedToCart(id)),
   }
 }
 
