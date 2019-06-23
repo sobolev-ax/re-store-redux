@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './shopping-cart-table.css';
 
-const ShoppingCartTable = ({ orderBooks, orderTotal, onIncrease, onDecrease, onDelete }) => {
+const ShoppingCartTable = ({ cartBooks, cartTotal, onIncrease, onDecrease, onDelete }) => {
   const RenderRow = ({ idx, title, count, total }) => {
     return (
       <tr key={idx} >
@@ -57,21 +57,21 @@ const ShoppingCartTable = ({ orderBooks, orderTotal, onIncrease, onDecrease, onD
         </thead>
 
         <tbody>
-          { orderBooks.map(RenderRow) }
+          { cartBooks.map(RenderRow) }
         </tbody>
       </table>
 
       <div className="total">
-        Total: ${ orderTotal }
+        Total: ${ cartTotal }
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ orderBooks, orderTotal }) => {
+const mapStateToProps = ({ cartBooks, cartTotal }) => {
   return {
-    orderBooks,
-    orderTotal,
+    cartBooks,
+    cartTotal,
   }
 }
 
