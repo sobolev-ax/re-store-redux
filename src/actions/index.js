@@ -27,8 +27,29 @@ const onAddedToCart = (id) => {
     payload: id,
   };
 }
+const onDeleteFromCart = (id) => {
+  return {
+    type: 'ALL_BOOK_DELETED_FROM_CART',
+    payload: id,
+  };
+}
+const onIncreaseFromCart = (id) => {
+  return {
+    type: 'BOOK_ADDED_TO_CART',
+    payload: id,
+  };
+}
+const onDecreaseFromCart = (id) => {
+  return {
+    type: 'BOOK_DELETED_FROM_CART',
+    payload: id,
+  };
+}
 
 export {
   fetchBooks,
   onAddedToCart,
+  onDeleteFromCart,
+  onIncreaseFromCart,
+  onDecreaseFromCart,
 };
