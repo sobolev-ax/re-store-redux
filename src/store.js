@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
+import thunkMiddleware from 'redux-thunk';
 
 const stringMiddleware = (store) => (next) => (action) => {
     console.log(store.getState());
@@ -17,10 +18,21 @@ const logMiddleware = () => (dispatch) => (action) => {
 }
 
 const store = createStore(reducer, applyMiddleware(
+  thunkMiddleware,
   stringMiddleware,
   logMiddleware,
 ));
 store.dispatch("HELLO");
+
+const myThunkCreator = (timeout = 2000) => (dispatch) => {
+  setTimeout(() => {
+    dispatch({
+      type: "DELAY"
+    })
+  }, timeout);
+};
+
+store.dispatch(myThunkCreator(3000));
 
 ///// ENHANCERS
 
